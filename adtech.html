@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad</title>
+</head>
+<body>
+    <div style='height:100%;width:100%;'> 
+        <script type='text/javascript'>
+        (function() {
+        var params = new URLSearchParams(location.search);
+        var  adid = params.get('adid');
+        var  plid = params.get('plid');
+        if(!adid || !plid) return;
+        var sn = 'DBM'; 
+        var cacheBuster = Math.random(); 
+        var data = '{"network":{"keyId":"DBM","name":"DBM","settings":{"env":"wap","tagType":"iFrame","iFrmBust":"Y","proto":"https","closeBtn":"N"},"macros":{"addiTr":{"cachbust":'+cacheBuster+',"lati":"","longi":"","segId":""},"clkTr":{"img":["${CLICK_URL}"],"scr":[]},"rendTr":{"img":[],"scr":[]},"engmTr":{"img":[],"scr":[]},"imprTr":{"img":[""],"scr":[]}}}}'; 
+        var protocol = 'https';
+        var scripts = document.getElementsByTagName('script'); 
+        for(var i = scripts.length-1; i >= 0; i--) { 
+        var s = scripts[i]; 
+        var script = document.createElement('script'); 
+        var index = window.scriptIndex  = (typeof window.scriptIndex == 'undefined') ? 0 : ++window.scriptIndex; 
+        script.id = 'script_' + index;
+        if(!window.adObj || (typeof window.adObj == 'undefined')) {window.adObj = {};} 
+        window.adObj[script.id] = data;
+        script.src = protocol + '://invoke.bonzai.co/mizu/invoke.do?proto=' + protocol + '&adid='+adid+'&scriptid=' + script.id +'&sn='+sn +'&plid='+plid+'&rnd=' + cacheBuster +'&ssa=true'; 
+        s.parentNode.insertBefore(script, s.nextSibling); 
+        break; 
+        }})(this); 
+        </script> 
+    </div> 
+</body>
+</html>
